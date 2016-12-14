@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmm.pbm.data.dao.iface.BookDAO">
+    <resultMap type="pmm.pbm.service.results.ListBookVO" id="bookVO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="author_id" property="author.left" jdbcType="BIGINT"/>
+        <result column="author_name" property="author.right" jdbcType="VARCHAR"/>
+        <result column="genre_id" property="genre.left" jdbcType="BIGINT"/>
+        <result column="genre_name" property="genre.right" jdbcType="VARCHAR"/>
+        <result column="cover_id" property="cover.left" jdbcType="BIGINT"/>
+        <result column="cover_name" property="cover.right" jdbcType="VARCHAR"/>
+        <collection property="tags" column="id" javaType="ArrayList" select="getTags"/>
+    </resultMap>
+
+    <select id="getTags" parameterType="int" resultType="org.apache.commons.lang3.tuple.MutablePair">
+        SELECT
+            bt.tag_id AS `left`,
+            tag.`name` AS `right`
+        FROM
+            (
+                SELECT
+                    tag_id, book_id
+                FROM
+                    pbm_book_tag
+                WHERE
+                    deleted = 0
+                AND book_id = #{id}
+            ) bt
+        LEFT JOIN pbm_tag tag ON tag.deleted = 0 AND tag.id = bt.tag_id
+    </select>
+
+    <select id="getBooks" parameterType="pmm.pbm.service.params.ListBookDTO" resultMap="bookVO">
+        SELECT
+            book.id,
+            book.title,
+            book.intro,
+            book.author_id,
+            author.`name` AS author_name,
+            book.genre_id,
+            genre.`name` AS genre_name,
+            book.cover_id,
+            file.`name` AS cover_name
+        FROM
+            (
+                SELECT
+                    id,
+                    title,
+                    intro,
+                    author_id,
+                    genre_id,
+                    cover_id
+                FROM
+                    pbm_book
+                WHERE
+                    deleted = 0
+                <if test="id != null and id != ''">
+                    AND id = #{id}
+                </if>
+                <if test="title != null and title != ''">
+                    AND title LIKE CONCAT('%', #{title}, '%')
+                </if>
+                <if test="authorId != null and authorId != ''">
+                    AND author_id = #{authorId}
+                </if>
+                <if test="genreId != null and genreId != ''">
+                    AND genre_id = #{genreId}
+                </if>
+                <if test="coverId != null and coverId != ''">
+                    AND cover_id = #{coverId}
+                </if>
+            ) book
+        <choose>
+            <when test="authorName != null and authorName != ''">
+                JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pbm_author
+                    WHERE
+                        deleted = 0
+                    AND `name` LIKE CONCAT('%', #{authorName}, '%')
+                ) author ON author.id = book.author_id
+            </when>
+            <otherwise>
+                LEFT JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pbm_author
+                    WHERE
+                        deleted = 0
+                ) author ON author.id = book.author_id
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="genreName != null and genreName != ''">
+                JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pbm_genre
+                    WHERE
+                        deleted = 0
+                    AND `name` LIKE CONCAT('%', #{genreName}, '%')
+                ) genre ON genre.id = book.genre_id
+            </when>
+            <otherwise>
+                LEFT JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pbm_genre
+                    WHERE
+                        deleted = 0
+                ) genre ON genre.id = book.genre_id
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="coverName != null and coverName != ''">
+                JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pmm_storage
+                    WHERE
+                        deleted = 0
+                    AND `name` LIKE CONCAT('%', #{coverName}, '%')
+                ) file ON file.id = book.cover_id
+            </when>
+            <otherwise>
+                LEFT JOIN (
+                    SELECT
+                        id,
+                        `name`
+                    FROM
+                        pmm_storage
+                    WHERE
+                        deleted = 0
+                ) file ON file.id = book.cover_id
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

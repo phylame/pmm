@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <div
+    id="paging"
+    th:fragment="paging(page, link)"
+    th:inline="text">
+    <div class="left">
+      <script th:inline="javascript">
+        function _change_limit_(limit) {
+            location.href = [[@{${link}(offset=${page.offset}, limit='')}]] + limit;
+        }
+      </script>
+      <span>[[#{paging.details(${page.total}, ${page.pages}, ${page.offset})}]]</span>
+      <th:block th:if="${page.limits ne null}">
+        <span>| Size:</span>
+        <select
+          onchange="_change_limit_(this.value)"
+          class="select">
+          <option
+            value="1"
+            th:each="no: ${page.limits}"
+            th:value="${no}"
+            th:selected="${no eq page.limit}"
+            th:text="${no}">1</option>
+        </select>
+      </th:block>
+    </div>
+    <div class="right">
+      <ul>
+        <th:block th:unless="${page.first}">
+          <li>
+            <a
+              href="#"
+              th:href="@{${link}(offset=1, limit=${page.limit})}">First</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              th:href="@{${link}(offset=${page.offset - 1}, limit=${page.limit})}">Previous</a>
+          </li>
+        </th:block>
+        <li th:each="offset: ${page.offsets}">
+          <a
+            href="#"
+            th:if="${offset ne page.offset}"
+            th:href="@{${link}(offset=${offset}, limit=${page.limit})}">[[${offset}]]</a>
+          <span
+            class="selected"
+            th:if="${offset eq page.offset}">[[${offset}]]</span>
+        </li>
+        <th:block th:unless="${page.last}">
+          <li>
+            <a
+              href="#"
+              th:href="@{${link}(offset=${page.offset + 1}, limit=${page.limit})}">Next</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              th:href="@{${link}(offset=${page.pages}, limit=${page.limit})}">Last</a>
+          </li>
+        </th:block>
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

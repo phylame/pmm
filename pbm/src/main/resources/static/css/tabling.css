@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+.tabling {
+  border-spacing: 0;
+}
+
+.tabling th, .tabling td {
+  padding: 0.3em 0.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tabling thead tr {
+  background: #E6E8FA;
+  text-align: center;
+}
+
+.tabling tbody tr {
+  background: transparent;
+  text-align: center;
+}
+
+.tabling tbody tr img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.tabling tbody tr.odd {
+  background: #F5F5F7;
+}
+
+.tabling tbody tr:hover {
+  background: #E1E1E2;
+}
+
+#detailing {
+  border-spacing: 0.2em 0.5em;
+}
+
+#detailing th {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 0.5em;
+  vertical-align: baseline;
+}
+
+#detailing td {
+  text-align: left;
+}
+
+#detailing td .text {
+  width: 16em;
+  padding: 0.2em;
+  border-radius: 0;
+  border: 1px solid #CCC;
+  font-size: 1em;
+}
+
+#detailing td .select {
+  width: 16.5em;
+  padding: 0.1em 0;
+  border: 1px solid #CCC;
+  font-size: 1em;
+}
+
+#detailing td .select option {
+  
+}
+
+#detailing td .long-text {
+  width: 16em;
+  height: 4em;
+  padding: 0.2em;
+  border-radius: 0;
+  border: 1px solid #CCC;
+  resize: none;
+  font-family: "default-font", sans-serif;
+  font-size: 1em;
+}
+
+#detailing td .text:focus, #detailing td .long-text:focus, #detailing td .select:focus {
+  outline-color: #008B8B;
+}
+
+#detailing td .error {
+  color: red;
+}

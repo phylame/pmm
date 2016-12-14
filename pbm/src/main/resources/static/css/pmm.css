@@ -1,0 +1,156 @@
+@CHARSET "UTF-8";
+
+body, div, form, table, ul, ol, button {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei", Arial, Helvitica, Verdana, sans-serif;
+}
+
+#container {
+  width: 87%;
+  min-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 5px 5px 10px #888888;
+  background: #FFF;
+}
+
+#content {
+  margin: 0 auto;
+}
+
+.wrapper {
+  margin: 0 42px auto;
+}
+
+.fully {
+  margin: 0 auto;
+  width: 100%;
+}
+
+#header, #footer {
+  color: #FFF;
+  padding: 0.2em 0;
+  background: #00796F;
+  font-size: 0.9em;
+  vertical-align: middle;
+}
+
+#header {
+  margin: 0 0 10px 0;
+  border-radius: 0 0 6px 6px;
+}
+
+#footer {
+  margin: 10px 0 0 0;
+  border-radius: 6px 6px 0 0;
+}
+
+#banner h2 {
+  
+}
+
+#menubar div {
+  background: #222;
+}
+
+.menu {
+  overflow: hidden;
+}
+
+.menu a:link, .menu a:visited {
+  display: block;
+  padding: 0.5em 0.5em;
+  color: #EEE;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu a:hover, .menu a:active {
+  color: #222;
+  background: #EEE;
+}
+
+/* copyright */
+#footer span {
+  
+}
+
+#footer a:link, #footer a:visited {
+  color: #CCC;
+  text-decoration: none;
+}
+
+#footer a:hover, #footer a:active {
+  color: #ff00ff;
+  text-decoration: underline;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
+.blur {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.lilist {
+  list-style-type: none;
+}
+
+.lilist li {
+  float: left;
+}
+
+.button, .select, .text {
+  margin: 0;
+  border: 1px solid #3498db;
+  padding: 0.2em 0.4em;
+  background: transparent;
+  font-size: 0.9em;
+}
+
+.button:hover, .select:hover, .text:hover {
+  border-color: blue;
+}
+
+.button:focus, .select:focus, .text:focus {
+  border-color: #e74c3c;
+  outline-color: #e74c3c;
+}
+
+.button {
+  cursor: pointer;
+  color: #222;
+}
+
+.select {
+  overflow: hidden;
+  box-shadow: inset 1px 1px 2px #ddd8dc;
+}
+
+.text {
+  box-shadow: inset 1px 1px 2px #ddd8dc;
+}

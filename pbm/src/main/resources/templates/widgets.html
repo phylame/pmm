@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <div
+    id="header"
+    th:fragment="header">
+    <div class="wrapper">
+      <div
+        class="left"
+        th:inline="text">Current Time: [[${#dates.format(#dates.createNow())}]]</div>
+      <div class="right">CMS for PBM | [PW], Exit</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div
+    id="menubar"
+    th:fragment="menubar">
+    <div class="wrapper">
+      <ul class="menu lilist">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a
+            href="books.html"
+            th:href="@{/cms/books.html}">Books</a>
+        </li>
+        <li>
+          <a
+            href="authors.html"
+            th:href="@{/cms/authors.html}">Authors</a>
+        </li>
+        <li>
+          <a
+            href="genres.html"
+            th:href="@{/cms/genres.html}">Genres</a>
+        </li>
+        <li>
+          <a
+            href="tags.html"
+            th:href="@{/cms/tags.html}">Tags</a>
+        </li>
+        <li>
+          <a
+            href="files.html"
+            th:href="@{/cms/files.html}">Files</a>
+        </li>
+        <li>
+          <a
+            href="logs.html"
+            th:href="@{/cms/logs.html}">Logs</a>
+        </li>
+        <li>
+          <a
+            href="about.html"
+            th:href="@{/about.html}">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div
+    id="footer"
+    th:fragment="footer">
+    <div class="wrapper">
+      <div class="left">
+        <span th:text="#{meta.rights}">(C) 2016 PW</span> |
+        <a
+          href="about.html"
+          th:href="@{/about.html}"
+          th:value="#{footer.about}">About</a>
+        |
+        <a
+          href="mailto:phylame@163.com"
+          th:href="|mailto:#{meta.email}|"
+          th:value="#{footer.contact}">Contact</a>
+      </div>
+      <div class="right">Mobile</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</body>
+</html>

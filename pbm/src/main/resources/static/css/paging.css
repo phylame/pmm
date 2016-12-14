@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+#paging {
+  font-size: 0.85em;
+}
+
+#paging span {
+  padding: 0.1em 0;
+  vertical-align: middle;
+}
+
+#paging select, #paging li span, #paging li a {
+  padding: 0.1em 0.5em;
+  vertical-align: middle;
+}
+
+#paging ul {
+  list-style: none;
+}
+
+#paging ul li {
+  float: left;
+  padding: 0 0.2em;
+}
+
+#paging li span {
+  border: 1px solid #3498DB;
+  background: #3498DB;
+  color: #ECF0F1;
+}
+
+#paging li a {
+  color: blue;
+  text-decoration: none;
+  border: 1px solid #3498db;
+}
+
+#paging li a:hover, #paging li a:active {
+  color: #222;
+  border-color: #3498DB;
+}

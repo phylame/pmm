@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+#searchbar form {
+  margin: 0.5em 0;
+  overflow: hidden;
+}
+
+#searchbar fieldset {
+  border: 1px dashed #008b8b;
+  padding: 0.5em;
+}
+
+#searchbar legend {
+  color: #222;
+  font-weight: bold;
+}
+
+#searchbar label {
+  vertical-align: middle;
+}
