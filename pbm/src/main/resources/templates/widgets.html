@@ -7,7 +7,7 @@
     <div class="wrapper">
       <div
         class="left"
-        th:inline="text">Current Time: [[${#dates.format(#dates.createNow())}]]</div>
+        th:inline="text">Now: [[${#dates.format(#dates.createNow(), 'yyyy-M-d HH:mm:ss z')}]]</div>
       <div class="right">CMS for PBM | [PW], Exit</div>
       <div class="clear"></div>
     </div>
@@ -18,16 +18,22 @@
     th:fragment="menubar(names)">
     <div class="wrapper">
       <ul class="menu lilist">
-        <li><a
+        <li>
+          <a
             href="index.html"
-            th:index="@{/cms/index.html}">Home</a></li>
-        <li th:each="name: ${names}"><a
+            th:index="@{/cms/index.html}">Home</a>
+        </li>
+        <li th:each="name: ${names}">
+          <a
             href="items.html"
             th:text="#{|cms.${name}.name|}"
-            th:href="@{|/cms/${name}.html|}">Items</a></li>
-        <li><a
+            th:href="@{|/cms/${name}.html|}">Items</a>
+        </li>
+        <li>
+          <a
             href="about.html"
-            th:href="@{/cms/about.html}">About</a></li>
+            th:href="@{/cms/about.html}">About</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -40,7 +46,7 @@
         <span th:text="#{meta.rights}">(C) 2016 PW</span> |
         <a
           href="about.html"
-          th:href="@{/about.html}"
+          th:href="@{/cms/about.html}"
           th:value="#{footer.about}">About</a>
         |
         <a

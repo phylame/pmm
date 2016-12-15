@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import lombok.Data;
 
 @Data
-public class ListBookVO {
+public class BookVO {
     private Integer id;
 
     private String title;

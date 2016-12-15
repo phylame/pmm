@@ -30,7 +30,6 @@ public final class WebUtils {
         val object = type.newInstance();
         val binder = new ServletRequestDataBinder(object);
         binder.bind(request);
-        Reflections.invokeMethod(object, "setDeleted", false);
         return object;
     }
 }

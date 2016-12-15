@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import pmm.pbm.service.params.ListBookDTO;
-import pmm.pbm.service.results.ListBookVO;
+import pmm.pbm.service.results.BookVO;
 
 @Repository
 public interface BookDAO {
-    List<ListBookVO> getBooks(ListBookDTO dto);
+    List<BookVO> getBooks(ListBookDTO dto);
 }

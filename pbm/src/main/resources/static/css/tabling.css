@@ -2,6 +2,7 @@
 
 .tabling {
   border-spacing: 0;
+  border: 1px dotted #CCC;
 }
 
 .tabling th, .tabling td {
@@ -12,12 +13,12 @@
 }
 
 .tabling thead tr {
-  background: #E6E8FA;
+  background-color: #E6E8FA;
   text-align: center;
 }
 
 .tabling tbody tr {
-  background: transparent;
+  background-color: transparent;
   text-align: center;
 }
 
@@ -27,11 +28,11 @@
 }
 
 .tabling tbody tr.odd {
-  background: #F5F5F7;
+  background-color: #F5F5F7;
 }
 
 .tabling tbody tr:hover {
-  background: #E1E1E2;
+  background-color: #E1E1E2;
 }
 
 #detailing {

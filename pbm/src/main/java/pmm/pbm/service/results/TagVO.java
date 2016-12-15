@@ -6,7 +6,7 @@ import pmm.pbm.data.base.entity.Tag;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ListTagVO extends Tag {
+public class TagVO extends Tag {
     /**
      * Number of books for this tag.
      */

@@ -1,19 +1,26 @@
 @CHARSET "UTF-8";
 
-body, div, form, table, ul, ol, button {
+* {
   margin: 0;
   padding: 0;
-  font-family: "Microsoft YaHei", Arial, Helvitica, Verdana, sans-serif;
+}
+
+body {
+  background-color: #E6E8FA;
+}
+
+body, div, form, table, ul, ol, button {
+  font-family: Consolas, "Microsoft YaHei", Arial, Helvitica, Verdana, sans-serif;
 }
 
 #container {
   width: 87%;
   min-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 5px 5px 10px #888888;
-  background: #FFF;
+  padding: 0 1em;
+  border-radius: 0 0 0.5em 0.5em;
+  box-shadow: 0.5em 0.5em 0.8em #888888;
+  background-color: #FFF;
 }
 
 #content {
@@ -21,7 +28,7 @@ body, div, form, table, ul, ol, button {
 }
 
 .wrapper {
-  margin: 0 42px auto;
+  margin: 0 40px auto;
 }
 
 .fully {
@@ -32,46 +39,44 @@ body, div, form, table, ul, ol, button {
 #header, #footer {
   color: #FFF;
   padding: 0.2em 0;
-  background: #00796F;
+  background-color: #00796F;
   font-size: 0.9em;
   vertical-align: middle;
 }
 
 #header {
-  margin: 0 0 10px 0;
-  border-radius: 0 0 6px 6px;
+  margin: 0 0 0.7em 0;
+  border-radius: 0 0 0.5em 0.5em;
 }
 
 #footer {
-  margin: 10px 0 0 0;
-  border-radius: 6px 6px 0 0;
+  margin: 0.7em 0 0 0;
+  border-radius: 0.5em 0.5em 0 0;
 }
 
 #banner h2 {
-  
-}
-
-#menubar div {
-  background: #222;
+  padding: 0.4em 0;
+  color: #222;
 }
 
 .menu {
+  margin: 0.5em 0;
   overflow: hidden;
+  background-color: #222;
 }
 
 .menu a:link, .menu a:visited {
   display: block;
-  padding: 0.5em 0.5em;
+  padding: 0.5em 0.7em;
   color: #EEE;
   font-weight: bold;
-  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 .menu a:hover, .menu a:active {
   color: #222;
-  background: #EEE;
+  background-color: #EEE;
 }
 
 /* copyright */
@@ -80,12 +85,12 @@ body, div, form, table, ul, ol, button {
 }
 
 #footer a:link, #footer a:visited {
-  color: #CCC;
+  color: #FFF;
   text-decoration: none;
 }
 
 #footer a:hover, #footer a:active {
-  color: #ff00ff;
+  color: orange;
   text-decoration: underline;
 }
 
@@ -101,10 +106,6 @@ body, div, form, table, ul, ol, button {
   clear: both;
 }
 
-.center {
-  text-align: center;
-}
-
 .hidden {
   visibility: hidden;
 }
@@ -112,8 +113,8 @@ body, div, form, table, ul, ol, button {
 .popup {
   position: absolute;
   padding: 0.3em;
-  background:cyan;
-  max-width:100%;
+  background-color: cyan;
+  max-width: 100%;
 }
 
 .blur {
@@ -129,17 +130,19 @@ body, div, form, table, ul, ol, button {
 
 .lilist {
   list-style-type: none;
+  overflow: hidden;
 }
 
 .lilist li {
   float: left;
+  display: inline;
 }
 
 .button, .select, .text {
   margin: 0;
   border: 1px solid #3498db;
   padding: 0.2em 0.4em;
-  background: transparent;
+  background-color: transparent;
   font-size: 0.9em;
 }
 

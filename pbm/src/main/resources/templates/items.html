@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:text="#{|cms.${tag}.list.title}">Page Title</title>
+<title th:text="#{|cms.${tag}.list.title|}">Page Title</title>
 <meta charset="utf-8" />
 <link
   href="../static/css/pmm.css"
@@ -44,7 +44,7 @@
               <legend th:text="#{|cms.${tag}.list.legend|}">Search Tags</legend>
               <th:block th:each="unit: ${queryUnits}">
                 <label
-                  th:for="${#ids.next(unit.name)}"
+                  th:for="${unit.name}"
                   th:text="#{|cms.${tag}.list.dto.${unit.name}|} + ':'">Field Name</label>
                 <input
                   type="text"
@@ -68,10 +68,8 @@
               <tr>
                 <th>No</th>
                 <th
-                  style="text-align: left;"
                   th:each="unit: ${itemUnits}"
-                  th:text="#{|cms.${tag}.list.vo.${unit.name}|}"
-                  th:style="${unit.type eq 'String'} ? 'text-align: left;'">Field Name</th>
+                  th:text="#{|cms.${tag}.list.vo.${unit.name}|}">Field Name</th>
                 <th style="text-align: left;">Operation</th>
               </tr>
             </thead>
@@ -80,11 +78,25 @@
                 th:each="item: ${items}"
                 th:class="${itemStat.odd} ? 'odd'">
                 <td th:text="${itemStat.count}">1</td>
-                <td
-                  style="text-align: left; max-width: 120px;"
+                <th:block
                   th:each="unit: ${itemUnits}"
-                  th:text="${item.__${unit.name}__}"
-                  th:style="${unit.type eq 'String'} ? 'text-align: left; max-width: 120px;'">Test</td>
+                  th:switch="${unit.type}">
+                  <td
+                    style="text-align: center; max-width: 8em;"
+                    th:text="${item.__${unit.name}__}"
+                    th:case="'Integer'">Test</td>
+                  <td
+                    style="text-align: left; max-width: 8em;"
+                    th:case="'MutablePair'">
+                    <a
+                      href="item.html"
+                      th:text="${item.__${unit.name}__.right}">Go To</a>
+                  </td>
+                  <td
+                    style="text-align: left; max-width: 8em;"
+                    th:text="${item.__${unit.name}__}"
+                    th:case="*">Test</td>
+                </th:block>
                 <td style="text-align: left;">
                   <ul class="lilist">
                     <li>
