@@ -3,6 +3,7 @@ package pmm.pbm.data.base.support;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import pmm.pbm.util.cms.HiddenField;
 
 /**
  * Base abstraction for entity.
@@ -20,5 +21,6 @@ public abstract class Entity {
      * Deleted state
      */
     @JsonIgnore
+    @HiddenField
     private Boolean deleted;
 }

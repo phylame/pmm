@@ -22,4 +22,7 @@ public class ListBookVO {
 
     private List<MutablePair<Integer, String>> tags;
 
+    public String getWho() {
+        return title;
+    }
 }

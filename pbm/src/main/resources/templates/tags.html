@@ -19,6 +19,9 @@
   href="../static/css/paging.css"
   th:href="'/css/paging.css'"
   rel="stylesheet" />
+<script
+  src="../static/js/pmm.js"
+  th:src="'/js/pmm.js'"></script>
 </head>
 <body>
   <div id="container">
@@ -55,8 +58,7 @@
                 th:field="*{name}" />
               <label
                 th:for="${#ids.next('enable')}"
-                th:text="'State:'">State:</label>
-              <select
+                th:text="'State:'">State:</label> <select
                 class="select"
                 th:field="*{enable}">
                 <option value="">------------</option>
@@ -140,9 +142,7 @@
                 <td style="text-align: left; max-width: 180px;">Intro of tag</td>
                 <td style="text-align: left;">
                   <ul class="lilist">
-                    <li>
-                      <a href="tag.html">Edit</a>
-                    </li>
+                    <li><a href="tag.html">Edit</a></li>
                     <li>
                       <button class="button">Disable</button>
                     </li>

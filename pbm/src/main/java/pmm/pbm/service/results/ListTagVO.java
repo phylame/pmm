@@ -11,4 +11,8 @@ public class ListTagVO extends Tag {
      * Number of books for this tag.
      */
     private Integer books;
+
+    public String getWho() {
+        return getName();
+    }
 }

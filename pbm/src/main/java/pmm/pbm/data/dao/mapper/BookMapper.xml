@@ -72,7 +72,7 @@
                 </if>
             ) book
         <choose>
-            <when test="authorName != null and authorName != ''">
+            <when test="author != null and author != ''">
                 JOIN (
                     SELECT
                         id,
@@ -81,7 +81,7 @@
                         pbm_author
                     WHERE
                         deleted = 0
-                    AND `name` LIKE CONCAT('%', #{authorName}, '%')
+                    AND `name` LIKE CONCAT('%', #{author}, '%')
                 ) author ON author.id = book.author_id
             </when>
             <otherwise>
@@ -97,7 +97,7 @@
             </otherwise>
         </choose>
         <choose>
-            <when test="genreName != null and genreName != ''">
+            <when test="genre != null and genre != ''">
                 JOIN (
                     SELECT
                         id,
@@ -106,7 +106,7 @@
                         pbm_genre
                     WHERE
                         deleted = 0
-                    AND `name` LIKE CONCAT('%', #{genreName}, '%')
+                    AND `name` LIKE CONCAT('%', #{genre}, '%')
                 ) genre ON genre.id = book.genre_id
             </when>
             <otherwise>
@@ -122,7 +122,7 @@
             </otherwise>
         </choose>
         <choose>
-            <when test="coverName != null and coverName != ''">
+            <when test="cover != null and cover != ''">
                 JOIN (
                     SELECT
                         id,
@@ -131,7 +131,7 @@
                         pmm_storage
                     WHERE
                         deleted = 0
-                    AND `name` LIKE CONCAT('%', #{coverName}, '%')
+                    AND `name` LIKE CONCAT('%', #{cover}, '%')
                 ) file ON file.id = book.cover_id
             </when>
             <otherwise>

@@ -53,4 +53,9 @@ public class PageHelperAdapter<E> implements Paged<E> {
     public List<E> getResults() {
         return page;
     }
+
+    @Override
+    public E get(int index) {
+        return page.get(index);
+    }
 }

@@ -62,5 +62,8 @@
         <table tableName="pmm_endpoint" domainObjectName="Endpoint">
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
         </table>
+        <table tableName="pmm_cms" domainObjectName="CMSEndpoint">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
     </context>
 </generatorConfiguration>

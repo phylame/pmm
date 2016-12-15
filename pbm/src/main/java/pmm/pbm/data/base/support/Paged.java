@@ -81,6 +81,10 @@ public interface Paged<E> extends Iterable<E> {
      */
     List<E> getResults();
 
+    default E get(int index) {
+        return getResults().get(index);
+    }
+
     @Override
     default Iterator<E> iterator() {
         return getResults().iterator();

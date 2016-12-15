@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Page Title</title>
+<link
+  href="../static/css/pmm.css"
+  th:href="'/css/pmm.css'"
+  rel="stylesheet" />
+<link
+  href="../static/css/tabling.css"
+  th:href="'/css/tabling.css'"
+  rel="stylesheet" />
+</head>
+<body>
+  <div id="container">
+    <div th:replace="widgets :: header">(Put header bar here)</div>
+    <div
+      id="banner"
+      class="wrapper">(Put banner here)</div>
+    <div id="content">
+      <div class="wrapper">(Put content here)</div>
+    </div>
+    <div th:replace="widgets :: footer">(Put footer bar here)</div>
+  </div>
+</body>
+</html>

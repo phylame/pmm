@@ -105,6 +105,17 @@ body, div, form, table, ul, ol, button {
   text-align: center;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.popup {
+  position: absolute;
+  padding: 0.3em;
+  background:cyan;
+  max-width:100%;
+}
+
 .blur {
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);

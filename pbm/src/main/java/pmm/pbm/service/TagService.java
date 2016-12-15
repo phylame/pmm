@@ -14,8 +14,10 @@ import pmm.pbm.data.dao.iface.TagDAO;
 import pmm.pbm.service.params.ListTagDTO;
 import pmm.pbm.service.results.ListTagVO;
 import pmm.pbm.service.support.CrudService;
+import pmm.pbm.util.cms.GetMethod;
+import pmm.pbm.util.cms.ListMethod;
 
-@Service
+@Service("cmsTagService")
 public class TagService implements CrudService<Tag, TagExample, Integer> {
 
     @Autowired
@@ -29,10 +31,12 @@ public class TagService implements CrudService<Tag, TagExample, Integer> {
         return mapper;
     }
 
+    @ListMethod
     public Paged<ListTagVO> getTags(@NonNull ListTagDTO dto) {
         return selectPaged(() -> tagDAO.getTags(dto), dto);
     }
 
+    @GetMethod
     public ListTagVO getTagById(@NonNull String id) {
         val dto = new ListTagDTO();
         dto.setId(id);

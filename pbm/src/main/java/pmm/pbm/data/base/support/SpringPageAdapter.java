@@ -46,5 +46,4 @@ public class SpringPageAdapter<E> implements Paged<E> {
     public List<E> getResults() {
         return page.getContent();
     }
-
 }
