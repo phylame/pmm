@@ -3,13 +3,6 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: #E6E8FA;
-}
-
-body, div, form, table, ul, ol, button {
   font-family: Consolas, "Microsoft YaHei", Arial, Helvitica, Verdana, sans-serif;
 }
 
@@ -128,14 +121,12 @@ body, div, form, table, ul, ol, button {
   white-space: nowrap;
 }
 
-.lilist {
+.inlist {
   list-style-type: none;
-  overflow: hidden;
 }
 
-.lilist li {
+.inlist li {
   float: left;
-  display: inline;
 }
 
 .button, .select, .text {

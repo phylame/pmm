@@ -5,22 +5,17 @@
 }
 
 #paging span {
-  padding: 0.1em 0;
   vertical-align: middle;
 }
+
+#paging li {
+  padding: 0 0 0 0.3em;
+}
+
 
 #paging select, #paging li span, #paging li a {
-  padding: 0.1em 0.5em;
+  padding: 0.2em 0.5em;
   vertical-align: middle;
-}
-
-#paging ul {
-  list-style: none;
-}
-
-#paging ul li {
-  float: left;
-  padding: 0 0.2em;
 }
 
 #paging li span {

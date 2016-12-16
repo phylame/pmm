@@ -6,28 +6,26 @@
 }
 
 .tabling th, .tabling td {
-  padding: 0.3em 0.5em;
+  padding: 0.4em 0.7em;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
 .tabling thead tr {
   background-color: #E6E8FA;
-  text-align: center;
 }
 
 .tabling tbody tr {
   background-color: transparent;
-  text-align: center;
 }
 
-.tabling tbody tr img {
-  width: 1.5em;
-  height: 1.5em;
+table tbody tr {
+  background-color: transparent;
 }
 
-.tabling tbody tr.odd {
+.tabling tbody tr.even {
   background-color: #F5F5F7;
 }
 

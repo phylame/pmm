@@ -29,36 +29,34 @@
           ->
           <a href="#">Tag</a>
         </div>
-        <div
-          class="left"
-          style="min-height: 13em; min-width: 9em; padding: 1em; border-radius: 0 0 0.5em 0.5em; box-shadow: 0.5em 0.5em 0.8em #888888;">
-          <ul style="list-style: none;">
-            <li>
-              <a href="#">Tagged Books</a>
-            </li>
-            <li>
-              <a href="#">Cover Files</a>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="right"
-          style="margin: 0 auto; max-width: 70%;">
-          <table
-            id="detailing"
-            th:object="${item}">
-            <tr th:each="unit: ${itemUnits}">
-              <th th:text="#{|cms.${tag}.list.vo.${unit.name}|}">Field Name</th>
-              <td th:text="*{__${unit.name}__}">Field Value</td>
-            </tr>
-          </table>
-          <div>
-            <button class="button">Add</button>
-            <button class="button">Edit</button>
-            <button class="button">Delete</button>
+        <div style="min-height: 18em;">
+          <div
+            class="left"
+            style="min-height: 13em; min-width: 9em; padding: 1em; border-radius: 0 0 0.5em 0.5em; box-shadow: 0.5em 0.5em 0.8em #888888;">
+            <ul style="list-style: none;">
+              <li><a href="#">Tagged Books</a></li>
+              <li><a href="#">Cover Files</a></li>
+            </ul>
           </div>
+          <div
+            class="right"
+            style="margin: 0 auto; max-width: 70%;">
+            <table
+              id="detailing"
+              th:object="${item}">
+              <tr th:each="unit: ${itemUnits}">
+                <th th:text="#{|cms.${tag}.list.vo.${unit.name}|}">Field Name</th>
+                <td th:text="*{__${unit.name}__}">Field Value</td>
+              </tr>
+            </table>
+            <div>
+              <button class="button">Add</button>
+              <button class="button">Edit</button>
+              <button class="button">Delete</button>
+            </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
       </div>
     </div>
     <div th:replace="widgets :: footer">(Put footer bar here)</div>
