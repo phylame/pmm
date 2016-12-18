@@ -9,7 +9,6 @@ import java.util.Set;
 
 import javax.servlet.ServletRequest;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +31,7 @@ import pmm.pbm.service.rest.EndpointService;
 import pmm.pbm.service.support.CrudService;
 import pmm.pbm.util.Reflections;
 import pmm.pbm.web.controller.BaseController;
+import pw.phylame.ycl.value.Pair;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -158,7 +158,7 @@ public class CrudController extends BaseController {
                     for (val m : Class.forName(exampleClass.getName() + "$Criteria").getMethods()) {
                         val name = m.getName();
                         if (name.startsWith("and") && name.endsWith("NotEqualTo")) {
-                            properties.add(Pair.of(uncapitalize(name.substring(3, name.length() - 10)),
+                            properties.add(new Pair<>(uncapitalize(name.substring(3, name.length() - 10)),
                                     m.getParameterTypes()[0]));
                         }
                     }
@@ -175,16 +175,16 @@ public class CrudController extends BaseController {
             val example = exampleClass.newInstance();
             val criteria = Reflections.invokeMethod(example, "createCriteria");
             for (val item : getPropertyNames()) {
-                val value = getValueParameter(item.getRight(), request.getParameter(item.getLeft()));
+                val value = getValueParameter(item.getSecond(), request.getParameter(item.getFirst()));
                 if (value != null) {
-                    if (CharSequence.class.isAssignableFrom(item.getRight())) {
+                    if (CharSequence.class.isAssignableFrom(item.getSecond())) {
                         val str = value.toString();
                         if (!str.isEmpty()) {
-                            Reflections.invokeMethod(criteria, "and" + capitalize(item.getLeft()) + "Like",
+                            Reflections.invokeMethod(criteria, "and" + capitalize(item.getFirst()) + "Like",
                                     '%' + str + '%');
                         }
                     } else {
-                        Reflections.invokeMethod(criteria, "and" + capitalize(item.getLeft()) + "EqualTo", value);
+                        Reflections.invokeMethod(criteria, "and" + capitalize(item.getFirst()) + "EqualTo", value);
                     }
                 }
             }

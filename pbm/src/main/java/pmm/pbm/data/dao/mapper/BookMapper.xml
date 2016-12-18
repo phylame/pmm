@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmm.pbm.data.dao.iface.BookDAO">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
     <resultMap type="pmm.pbm.service.results.BookVO" id="bookVO">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="intro" property="intro" jdbcType="VARCHAR"/>
-        <result column="author_id" property="author.left" jdbcType="BIGINT"/>
-        <result column="author_name" property="author.right" jdbcType="VARCHAR"/>
-        <result column="genre_id" property="genre.left" jdbcType="BIGINT"/>
-        <result column="genre_name" property="genre.right" jdbcType="VARCHAR"/>
-        <result column="cover_id" property="cover.left" jdbcType="BIGINT"/>
-        <result column="cover_name" property="cover.right" jdbcType="VARCHAR"/>
+        <result column="author_id" property="author.first" jdbcType="BIGINT"/>
+        <result column="author_name" property="author.second" jdbcType="VARCHAR"/>
+        <result column="genre_id" property="genre.first" jdbcType="BIGINT"/>
+        <result column="genre_name" property="genre.second" jdbcType="VARCHAR"/>
+        <result column="cover_id" property="cover.first" jdbcType="BIGINT"/>
+        <result column="cover_name" property="cover.second" jdbcType="VARCHAR"/>
         <collection property="tags" column="id" javaType="ArrayList" select="getTags"/>
     </resultMap>
 
-    <select id="getTags" parameterType="int" resultType="org.apache.commons.lang3.tuple.MutablePair">
+    <select id="getTags" parameterType="int" resultType="pw.phylame.ycl.value.MutablePair">
         SELECT
-            bt.tag_id AS `left`,
-            tag.`name` AS `right`
+            bt.tag_id AS `first`,
+            tag.`name` AS `second`
         FROM
             (
                 SELECT
@@ -45,12 +46,7 @@
         FROM
             (
                 SELECT
-                    id,
-                    title,
-                    intro,
-                    author_id,
-                    genre_id,
-                    cover_id
+                    id, title, intro, author_id, genre_id, cover_id
                 FROM
                     pbm_book
                 WHERE
@@ -75,8 +71,7 @@
             <when test="author != null and author != ''">
                 JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pbm_author
                     WHERE
@@ -87,8 +82,7 @@
             <otherwise>
                 LEFT JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pbm_author
                     WHERE
@@ -100,8 +94,7 @@
             <when test="genre != null and genre != ''">
                 JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pbm_genre
                     WHERE
@@ -112,8 +105,7 @@
             <otherwise>
                 LEFT JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pbm_genre
                     WHERE
@@ -125,8 +117,7 @@
             <when test="cover != null and cover != ''">
                 JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pmm_storage
                     WHERE
@@ -137,8 +128,7 @@
             <otherwise>
                 LEFT JOIN (
                     SELECT
-                        id,
-                        `name`
+                        id, `name`
                     FROM
                         pmm_storage
                     WHERE

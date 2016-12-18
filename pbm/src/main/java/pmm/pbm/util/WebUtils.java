@@ -2,7 +2,7 @@ package pmm.pbm.util;
 
 import javax.servlet.ServletRequest;
 
-import org.apache.commons.lang3.ClassUtils;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
 import lombok.SneakyThrows;

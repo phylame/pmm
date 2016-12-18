@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmm.pbm.data.dao.iface.AuthorDAO">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
     <select id="getAuthors" parameterType="pmm.pbm.service.params.ListAuthorDTO"
         resultType="pmm.pbm.service.results.AuthorVO">
         SELECT
-            author.id, author.`name`, author.intro, book.books
+            author.id, author.`name`, author.intro, IF(book.books IS NULL, 0, book.books) AS books
         FROM
             (
                 SELECT

@@ -1,13 +1,16 @@
 package pmm.pbm.service.results;
 
+import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-
 import lombok.Data;
+import pw.phylame.ycl.value.MutablePair;
+import pw.phylame.ycl.value.Pair;
 
 @Data
-public class BookVO {
+public class BookVO implements Serializable {
+    private static final long serialVersionUID = 5799625074535458608L;
+
     private Integer id;
 
     private String title;
@@ -20,7 +23,7 @@ public class BookVO {
 
     private MutablePair<Integer, String> cover;
 
-    private List<MutablePair<Integer, String>> tags;
+    private List<Pair<Integer, String>> tags;
 
     public String getWho() {
         return title;

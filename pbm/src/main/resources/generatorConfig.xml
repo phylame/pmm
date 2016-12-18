@@ -4,66 +4,145 @@
     "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="D:\data\mvn\mysql\mysql-connector-java\5.1.18\mysql-connector-java-5.1.18.jar" />
+    <classPathEntry location="D:\share\repo\mvn\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
 
-    <context id="MySQLTables" targetRuntime="MyBatis3" introspectedColumnImpl="pmm.pbm.data.mbg.MyIntrospectedColumn">
-        <property name="javaFileEncoding" value="UTF-8" />
+    <context
+        id="MySQLTables"
+        targetRuntime="MyBatis3"
+        introspectedColumnImpl="pmm.pbm.data.mbg.MyIntrospectedColumn">
+        
+        <property
+            name="javaFileEncoding"
+            value="UTF-8" />
 
         <plugin type="pmm.pbm.data.mbg.MyGeneratorPlugin" />
 
+        <plugin type="org.mybatis.generator.plugins.CachePlugin">
+            <property
+                name="cache_type"
+                value="org.mybatis.caches.ehcache.LoggingEhcache" />
+        </plugin>
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            
+        </plugin>
+
         <commentGenerator type="pmm.pbm.data.mbg.MyCommentGenerator">
-            <property name="suppressDate" value="true" />
+            <property
+                name="suppressDate"
+                value="true" />
         </commentGenerator>
 
-        <jdbcConnection connectionURL="jdbc:mysql://192.168.1.100/test?useUnicode=true&amp;characterEncoding=UTF-8"
-            driverClass="com.mysql.jdbc.Driver" userId="root" password="tuozhen">
+        <jdbcConnection
+            connectionURL="jdbc:mysql://localhost/pmm?useUnicode=true&amp;characterEncoding=UTF-8"
+            driverClass="com.mysql.jdbc.Driver"
+            userId="pmm"
+            password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
-            <property name="forceBigDecimals" value="false" />
+            <property
+                name="forceBigDecimals"
+                value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="pmm.pbm.data.base.entity" targetProject="pbm/src/main/java">
-            <property name="enableSubPackages" value="true" />
-            <property name="entityRoot" value="pmm.pbm.data.base.support.Entity" />
-            <property name="exampleRoot" value="pmm.pbm.data.base.support.Example" />
+        <javaModelGenerator
+            targetPackage="pmm.pbm.data.base.entity"
+            targetProject="pbm/src/main/java">
+            <property
+                name="enableSubPackages"
+                value="true" />
+            <property
+                name="entityRoot"
+                value="pmm.pbm.data.base.support.Entity" />
+            <property
+                name="exampleRoot"
+                value="pmm.pbm.data.base.support.Example" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="pmm.pbm.data.base.mapper" targetProject="pbm/src/main/java">
-            <property name="enableSubPackages" value="true" />
+        <sqlMapGenerator
+            targetPackage="pmm.pbm.data.base.mapper"
+            targetProject="pbm/src/main/java">
+            <property
+                name="enableSubPackages"
+                value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="pmm.pbm.data.base.iface" targetProject="pbm/src/main/java">
-            <property name="enableSubPackages" value="true" />
-            <property name="ifaceRoot" value="pmm.pbm.data.base.support.Mapper" />
+        <javaClientGenerator
+            type="XMLMAPPER"
+            targetPackage="pmm.pbm.data.base.iface"
+            targetProject="pbm/src/main/java">
+            <property
+                name="enableSubPackages"
+                value="true" />
+            <property
+                name="ifaceRoot"
+                value="pmm.pbm.data.base.support.Mapper" />
         </javaClientGenerator>
-        
-        <table tableName="pbm_tag" domainObjectName="Tag">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+
+        <table
+            tableName="pbm_tag"
+            domainObjectName="Tag">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pbm_genre" domainObjectName="Genre">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pbm_genre"
+            domainObjectName="Genre">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pmm_storage" domainObjectName="Storage">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pmm_storage"
+            domainObjectName="Storage">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pbm_author" domainObjectName="Author">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pbm_author"
+            domainObjectName="Author">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pbm_book" domainObjectName="Book">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pbm_book"
+            domainObjectName="Book">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pmm_log" domainObjectName="Log">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pmm_log"
+            domainObjectName="Log">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pbm_book_tag" domainObjectName="BookTag">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pbm_book_tag"
+            domainObjectName="BookTag">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
-        <table tableName="pmm_endpoint" domainObjectName="Endpoint">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
-        </table>
-        <table tableName="pmm_cms" domainObjectName="CMSEndpoint">
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        <table
+            tableName="pmm_endpoint"
+            domainObjectName="Endpoint">
+            <generatedKey
+                column="id"
+                sqlStatement="MySql"
+                identity="true" />
         </table>
     </context>
 </generatorConfiguration>

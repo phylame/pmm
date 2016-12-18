@@ -20,7 +20,7 @@ spring:
 spring:
   profiles: local
   datasource:
-    url: jdbc:mysql://localhost/pmm?useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://localhost/pmm?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8
     username: pmm
     password: 123456
 

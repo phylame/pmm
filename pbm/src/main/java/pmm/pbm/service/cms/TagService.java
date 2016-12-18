@@ -2,6 +2,7 @@ package pmm.pbm.service.cms;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 import lombok.val;
@@ -14,8 +15,6 @@ import pmm.pbm.data.dao.iface.TagDAO;
 import pmm.pbm.service.params.ListTagDTO;
 import pmm.pbm.service.results.TagVO;
 import pmm.pbm.service.support.CrudService;
-import pmm.pbm.util.cms.GetMethod;
-import pmm.pbm.util.cms.ListMethod;
 
 @Service("cmsTagService")
 public class TagService implements CrudService<Tag, TagExample, Integer> {
@@ -31,15 +30,16 @@ public class TagService implements CrudService<Tag, TagExample, Integer> {
         return mapper;
     }
 
-    @ListMethod
-    public Paged<TagVO> getTags(@NonNull ListTagDTO dto) {
+    @Transactional
+    public Paged<TagVO> getTagPaged(@NonNull ListTagDTO dto) {
         return selectPaged(() -> tagDAO.getTags(dto), dto);
     }
 
-    @GetMethod
+    @Transactional
     public TagVO getTagById(@NonNull String id) {
         val dto = new ListTagDTO();
         dto.setId(id);
+        dto.setLimit(1);
         val results = tagDAO.getTags(dto);
         return results.isEmpty() ? null : results.get(0);
     }

@@ -34,7 +34,9 @@
     <div th:replace="widgets :: menubar(names=${names})">(Put menu bar here)</div>
     <div id="content">
       <div class="wrapper">
-        <div id="searchbar">
+        <div
+          id="searchbar"
+          th:if="${not #lists.isEmpty(queryUnits)}">
           <form
             action="#"
             method="get"
@@ -76,24 +78,23 @@
             <tbody>
               <tr
                 th:each="item: ${items}"
-                th:class="${itemStat.odd} ? 'odd'">
-                <td th:text="${itemStat.count}">1</td>
+                th:class="${itemStat.odd} ? 'even'">
+                <td th:text="${itemStat.count + items.limit * (items.offset - 1)}">1</td>
                 <th:block
                   th:each="unit: ${itemUnits}"
                   th:switch="${unit.type}">
                   <td
-                    style="text-align: center; max-width: 8em;"
-                    th:text="${item.__${unit.name}__}"
-                    th:case="'Integer'">Test</td>
-                  <td
-                    style="text-align: left; max-width: 8em;"
+                    style="max-width: 8em;"
                     th:case="'MutablePair'">
                     <a
                       href="item.html"
-                      th:text="${item.__${unit.name}__.right}">Go To</a>
+                      th:text="${item.__${unit.name}__.second}">Go To</a>
                   </td>
                   <td
-                    style="text-align: left; max-width: 8em;"
+                    th:case="'Boolean'"
+                    th:text="#{|cms.${tag}.list.vo.${unit.name}.${item.__${unit.name}__}|}">Yes/No</td>
+                  <td
+                    style="max-width: 8em;"
                     th:text="${item.__${unit.name}__}"
                     th:case="*">Test</td>
                 </th:block>

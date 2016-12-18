@@ -2,11 +2,10 @@ package pmm.pbm.service.params;
 
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import pmm.pbm.util.cms.QueryField;
+import pw.phylame.ycl.value.MutablePair;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

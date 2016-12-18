@@ -6,17 +6,12 @@
     th:fragment="paging(page, link)"
     th:inline="text">
     <div class="left">
-      <script th:inline="javascript">
-        function _change_limit_(limit) {
-            location.href = [[@{${link}(offset=${page.offset}, limit='')}]] + limit;
-        }
-      </script>
       <span>[[#{paging.details(${page.total}, ${page.pages}, ${page.offset})}]]</span>
       <th:block th:if="${page.limits ne null}">
         <span>| Size:</span>
         <select
-          onchange="_change_limit_(this.value)"
-          class="select">
+          class="select"
+          th:onchange="|location.href='@{${link}(offset=${page.offset}, limit=)}='+this.value;|">
           <option
             value="1"
             th:each="no: ${page.limits}"

@@ -2,6 +2,7 @@ package pmm.pbm.service.cms;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 import lombok.val;
@@ -14,8 +15,6 @@ import pmm.pbm.data.dao.iface.BookDAO;
 import pmm.pbm.service.params.ListBookDTO;
 import pmm.pbm.service.results.BookVO;
 import pmm.pbm.service.support.CrudService;
-import pmm.pbm.util.cms.GetMethod;
-import pmm.pbm.util.cms.ListMethod;
 
 @Service("cmsBookService")
 public class BookService implements CrudService<Book, BookExample, Integer> {
@@ -30,15 +29,17 @@ public class BookService implements CrudService<Book, BookExample, Integer> {
         return bookMapper;
     }
 
-    @ListMethod
-    public Paged<BookVO> getBooks(@NonNull ListBookDTO dto) {
+    @Transactional
+    public Paged<BookVO> getBookPaged(@NonNull ListBookDTO dto) {
         return selectPaged(() -> bookDAO.getBooks(dto), dto);
     }
 
-    @GetMethod
+    @Transactional
     public BookVO getBookById(@NonNull String id) {
         val dto = new ListBookDTO();
         dto.setId(id);
+        dto.setLimit(1);
+
         val results = bookDAO.getBooks(dto);
         return results.isEmpty() ? null : results.get(0);
     }

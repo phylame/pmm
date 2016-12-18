@@ -61,6 +61,7 @@ public class MyGeneratorPlugin extends PluginAdapter {
             removeFields(clazz.getFields(), rootEntity);
             clazz.getMethods().clear();
         }
+
         return super.modelBaseRecordClassGenerated(clazz, table);
     }
 

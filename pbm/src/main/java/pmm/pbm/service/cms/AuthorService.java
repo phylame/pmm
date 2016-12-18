@@ -2,6 +2,7 @@ package pmm.pbm.service.cms;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 import lombok.val;
@@ -14,8 +15,6 @@ import pmm.pbm.data.dao.iface.AuthorDAO;
 import pmm.pbm.service.params.ListAuthorDTO;
 import pmm.pbm.service.results.AuthorVO;
 import pmm.pbm.service.support.CrudService;
-import pmm.pbm.util.cms.GetMethod;
-import pmm.pbm.util.cms.ListMethod;
 
 @Service("cmsAuthorService")
 public class AuthorService implements CrudService<Author, AuthorExample, Integer> {
@@ -30,12 +29,12 @@ public class AuthorService implements CrudService<Author, AuthorExample, Integer
         return mapper;
     }
 
-    @ListMethod
-    public Paged<AuthorVO> getAuthors(@NonNull ListAuthorDTO dto) {
+    @Transactional
+    public Paged<AuthorVO> getAuthorPaged(@NonNull ListAuthorDTO dto) {
         return selectPaged(() -> authorDAO.getAuthors(dto), dto);
     }
 
-    @GetMethod
+    @Transactional
     public AuthorVO getAuthorById(@NonNull String id) {
         val dto = new ListAuthorDTO();
         dto.setId(id);

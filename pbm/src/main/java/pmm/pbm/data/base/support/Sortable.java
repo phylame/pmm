@@ -1,6 +1,6 @@
 package pmm.pbm.data.base.support;
 
-import org.apache.commons.lang3.StringUtils;
+import pw.phylame.ycl.util.StringUtils;
 
 public interface Sortable {
 

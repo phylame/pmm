@@ -296,52 +296,52 @@ public class LogExample extends Example {
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdEqualTo(Boolean value) {
+        public Criteria andSourceIdEqualTo(Byte value) {
             addCriterion("source_id =", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotEqualTo(Boolean value) {
+        public Criteria andSourceIdNotEqualTo(Byte value) {
             addCriterion("source_id <>", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdGreaterThan(Boolean value) {
+        public Criteria andSourceIdGreaterThan(Byte value) {
             addCriterion("source_id >", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andSourceIdGreaterThanOrEqualTo(Byte value) {
             addCriterion("source_id >=", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdLessThan(Boolean value) {
+        public Criteria andSourceIdLessThan(Byte value) {
             addCriterion("source_id <", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdLessThanOrEqualTo(Boolean value) {
+        public Criteria andSourceIdLessThanOrEqualTo(Byte value) {
             addCriterion("source_id <=", value, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdIn(List<Boolean> values) {
+        public Criteria andSourceIdIn(List<Byte> values) {
             addCriterion("source_id in", values, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotIn(List<Boolean> values) {
+        public Criteria andSourceIdNotIn(List<Byte> values) {
             addCriterion("source_id not in", values, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdBetween(Boolean value1, Boolean value2) {
+        public Criteria andSourceIdBetween(Byte value1, Byte value2) {
             addCriterion("source_id between", value1, value2, "sourceId");
             return (Criteria) this;
         }
 
-        public Criteria andSourceIdNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andSourceIdNotBetween(Byte value1, Byte value2) {
             addCriterion("source_id not between", value1, value2, "sourceId");
             return (Criteria) this;
         }
@@ -356,52 +356,52 @@ public class LogExample extends Example {
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(Integer value) {
+        public Criteria andTimeEqualTo(Long value) {
             addCriterion("time =", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(Integer value) {
+        public Criteria andTimeNotEqualTo(Long value) {
             addCriterion("time <>", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(Integer value) {
+        public Criteria andTimeGreaterThan(Long value) {
             addCriterion("time >", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("time >=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(Integer value) {
+        public Criteria andTimeLessThan(Long value) {
             addCriterion("time <", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andTimeLessThanOrEqualTo(Long value) {
             addCriterion("time <=", value, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<Integer> values) {
+        public Criteria andTimeIn(List<Long> values) {
             addCriterion("time in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<Integer> values) {
+        public Criteria andTimeNotIn(List<Long> values) {
             addCriterion("time not in", values, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(Integer value1, Integer value2) {
+        public Criteria andTimeBetween(Long value1, Long value2) {
             addCriterion("time between", value1, value2, "time");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andTimeNotBetween(Long value1, Long value2) {
             addCriterion("time not between", value1, value2, "time");
             return (Criteria) this;
         }

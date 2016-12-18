@@ -2,12 +2,11 @@ package pmm.pbm.data.base.support;
 
 import java.util.List;
 
-import org.apache.commons.lang3.Validate;
-
 import com.github.pagehelper.Page;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import pw.phylame.ycl.util.Validate;
 
 @RequiredArgsConstructor
 public class PageHelperAdapter<E> implements Paged<E> {
@@ -15,7 +14,7 @@ public class PageHelperAdapter<E> implements Paged<E> {
     private final Page<E> page;
 
     public PageHelperAdapter(List<E> page) {
-        Validate.isTrue(page instanceof Page<?>, "page must be instance of %s", Page.class.getName());
+        Validate.require(page instanceof Page<?>, "page must be instance of %s", Page.class.getName());
         this.page = (Page<E>) page;
     }
 

@@ -23,7 +23,7 @@ public interface Paged<E> extends Iterable<E> {
     /**
      * Default number of shown results in a page.
      */
-    int DEFAULT_LIMITS = 8;
+    int DEFAULT_LIMITS = 10;
 
     /**
      * Returns number of total results.
@@ -105,13 +105,8 @@ public interface Paged<E> extends Iterable<E> {
     }
 
     default int[] getLimits() {
-        long pages = getTotal();
-        if (pages <= 2) {
-            return null;
-        }
-        int top = (int) (pages > DEFAULT_LIMITS ? DEFAULT_LIMITS : pages);
-        int[] limits = new int[top - 2 + 1];
-        Arrays.setAll(limits, i -> 2 + i);
+        int[] limits = new int[DEFAULT_LIMITS];
+        Arrays.setAll(limits, i -> 1 + i);
         return limits;
     }
 }

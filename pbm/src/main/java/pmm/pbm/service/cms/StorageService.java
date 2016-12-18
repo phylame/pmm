@@ -1,8 +1,10 @@
 package pmm.pbm.service.cms;
 
-import org.apache.commons.lang3.StringUtils;
+import static pw.phylame.ycl.util.StringUtils.isNotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 import lombok.val;
@@ -13,8 +15,6 @@ import pmm.pbm.data.base.support.Mapper;
 import pmm.pbm.data.base.support.Paged;
 import pmm.pbm.service.params.ListFileDTO;
 import pmm.pbm.service.support.CrudService;
-import pmm.pbm.util.cms.GetMethod;
-import pmm.pbm.util.cms.ListMethod;
 
 @Service("cmsFileService")
 public class StorageService implements CrudService<Storage, StorageExample, Integer> {
@@ -27,27 +27,27 @@ public class StorageService implements CrudService<Storage, StorageExample, Inte
         return mapper;
     }
 
-    @ListMethod
-    public Paged<Storage> getFiles(@NonNull ListFileDTO dto) {
+    @Transactional
+    public Paged<Storage> getFilePaged(@NonNull ListFileDTO dto) {
         val example = new StorageExample();
         val criteria = example.getCriteria().andDeletedEqualTo(false);
-        if (StringUtils.isNoneEmpty(dto.getId())) {
+        if (isNotEmpty(dto.getId())) {
             try {
                 criteria.andIdEqualTo(Integer.valueOf(dto.getId()));
             } catch (NumberFormatException ignored) {
 
             }
         }
-        if (StringUtils.isNotEmpty(dto.getMd5())) {
+        if (isNotEmpty(dto.getMd5())) {
             criteria.andMd5Like('%' + dto.getMd5() + '%');
         }
-        if (StringUtils.isNotEmpty(dto.getName())) {
+        if (isNotEmpty(dto.getName())) {
             criteria.andNameLike('%' + dto.getName() + '%');
         }
         return selectPaged(() -> selectByExample(example), dto);
     }
 
-    @GetMethod
+    @Transactional
     public Storage getFileById(@NonNull String id) {
         try {
             return selectById(Integer.valueOf(id));
