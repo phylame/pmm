@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import javax.annotation.PreDestroy;
 import javax.servlet.ServletRequest;
 
 import org.slf4j.Logger;
@@ -43,7 +44,12 @@ public class CMSService {
     @Autowired
     private WebApplicationContext context;
 
-    private final Map<String, ItemWorker> workers = Maps.newIdentityHashMap();
+    private final Map<String, ItemWorker> workers = Maps.newHashMap();
+
+    @PreDestroy
+    public void cleanup() {
+        workers.clear();
+    }
 
     @Transactional
     public ItemWorker getWorker(String tag) {

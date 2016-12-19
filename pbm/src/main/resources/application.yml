@@ -23,6 +23,7 @@ spring:
     url: jdbc:mysql://localhost/pmm?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8
     username: pmm
     password: 123456
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
 
   thymeleaf:
     cache: false
@@ -39,6 +40,9 @@ spring:
   resources:
     chain:
       cache: false
+
+  mvc:
+    date-format: yy-M-d
 ---
 spring:
   profiles: test
@@ -46,7 +50,7 @@ spring:
     url: jdbc:mysql://192.168.1.100/test?useUnicode=true&amp;characterEncoding=UTF-8
     username: root
     password: tuozhen
-
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
   thymeleaf:
     cache: false
 
@@ -62,3 +66,6 @@ spring:
   resources:
     chain:
       cache: false
+
+  mvc:
+    date-format: yy-M-d

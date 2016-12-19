@@ -44,13 +44,28 @@
             th:action="@{${url}}">
             <fieldset>
               <legend th:text="#{|cms.${tag}.list.legend|}">Search Tags</legend>
-              <th:block th:each="unit: ${queryUnits}">
+              <th:block
+                th:each="unit: ${queryUnits}"
+                th:switch="${unit.type}">
                 <label
                   th:for="${unit.name}"
                   th:text="#{|cms.${tag}.list.dto.${unit.name}|} + ':'">Field Name</label>
+                <select
+                  class="select"
+                  th:case="'Boolean'"
+                  th:field="*{__${unit.name}__}">
+                  <option value="">------------</option>
+                  <option
+                    value="true"
+                    th:text="#{|cms.${tag}.list.vo.${unit.name}.true|}">Yes</option>
+                  <option
+                    value="false"
+                    th:text="#{|cms.${tag}.list.vo.${unit.name}.false|}">No</option>
+                </select>
                 <input
                   type="text"
                   class="text"
+                  th:case="*"
                   th:field="*{__${unit.name}__}" />
               </th:block>
               <input
