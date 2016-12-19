@@ -12,6 +12,11 @@ logging:
     org.mybatis: DEBUG
     org.apache.ibatis: DEBUG
 
+my:
+  paging:
+    shown-pages: 8
+    default-limit: 10
+
 spring:
   profiles:
     active: local

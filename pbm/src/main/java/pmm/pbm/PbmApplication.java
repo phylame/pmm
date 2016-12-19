@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("pmm.pbm.data")
 public class PbmApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PbmApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PbmApplication.class, args);
+    }
 }

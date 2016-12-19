@@ -52,6 +52,7 @@
                   th:text="#{|cms.${tag}.list.dto.${unit.name}|} + ':'">Field Name</label>
                 <select
                   class="select"
+                  style="width: 12em;"
                   th:case="'Boolean'"
                   th:field="*{__${unit.name}__}">
                   <option value="">------------</option>
@@ -65,9 +66,16 @@
                 <input
                   type="text"
                   class="text"
+                  style="width: 12em;"
                   th:case="*"
                   th:field="*{__${unit.name}__}" />
+                <br th:if="${unitStat.size ne 3 and unitStat.count % 3 eq 0}" />
               </th:block>
+              <input
+                type="hidden"
+                id="limit"
+                name="limit"
+                th:value="${dto.limit}" />
               <input
                 type="reset"
                 class="button"

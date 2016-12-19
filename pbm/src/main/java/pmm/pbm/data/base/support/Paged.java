@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import pmm.pbm.config.AppConfig;
+
 /**
  * Common pagination support.
  *
@@ -18,12 +20,12 @@ public interface Paged<E> extends Iterable<E> {
     /**
      * Number of shown pages in paging bar.
      */
-    int SHOWN_PAGES = 8;
+    int SHOWN_PAGES = AppConfig.shownPages;
 
     /**
      * Default number of shown results in a page.
      */
-    int DEFAULT_LIMITS = 10;
+    int DEFAULT_LIMITS = AppConfig.defaultLimit;
 
     /**
      * Returns number of total results.

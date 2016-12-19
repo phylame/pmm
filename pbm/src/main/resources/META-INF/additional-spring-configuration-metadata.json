@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "my.paging.shown-pages",
+    "type": "java.lang.Integer",
+    "description": "Number of pages shown in paging bar"
+  },
+  {
+    "name": "my.paging.default-limit",
+    "type": "java.lang.Integer",
+    "description": "Default number of items shown in a page"
+  }
+]}
