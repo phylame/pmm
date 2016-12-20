@@ -1,12 +1,17 @@
 {"properties": [
   {
-    "name": "my.paging.shown-pages",
+    "name": "pmm.paging.shown-pages",
     "type": "java.lang.Integer",
     "description": "Number of pages shown in paging bar"
   },
   {
-    "name": "my.paging.default-limit",
+    "name": "pmm.paging.default-limit",
     "type": "java.lang.Integer",
     "description": "Default number of items shown in a page"
+  },
+  {
+    "name": "schedule.quartz.config-location",
+    "type": "java.lang.String",
+    "description": "Location of Quartz properties file"
   }
 ]}

@@ -2,7 +2,7 @@ server:
   port: 80
 
 mybatis:
-  config-location: classpath:/mybatis-config.xml
+  config-location: classpath:mybatis-config.xml
   type-handlers-package: pmm.pbm.data.base.entity
   mapper-locations: classpath:**/mapper/*.xml
 
@@ -12,10 +12,14 @@ logging:
     org.mybatis: DEBUG
     org.apache.ibatis: DEBUG
 
-my:
+pmm:
   paging:
     shown-pages: 8
     default-limit: 10
+
+schedule:
+  quartz:
+    config-location: classpath:quartz.properties
 
 spring:
   profiles:

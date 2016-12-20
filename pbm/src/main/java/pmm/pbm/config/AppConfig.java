@@ -9,14 +9,13 @@ public class AppConfig{
 
     public static int defaultLimit;
 
-    @Value("${my.paging.shown-pages}")
+    @Value("${pmm.paging.shown-pages}")
     private void setShownPages(int pages) {
         shownPages = pages;
     }
 
-    @Value("${my.paging.default-limit}")
+    @Value("${pmm.paging.default-limit}")
     private void setPageLimit(int limit) {
         defaultLimit = limit;
     }
-
 }
