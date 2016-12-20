@@ -14,7 +14,7 @@ public class GenreVO extends Genre {
      */
     private Integer books;
 
-    public String getWho() {
+    public String getWhat() {
         return getName();
     }
 }

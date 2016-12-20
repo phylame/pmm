@@ -50,26 +50,7 @@
                 <label
                   th:for="${unit.name}"
                   th:text="#{|cms.${tag}.list.dto.${unit.name}|} + ':'">Field Name</label>
-                <select
-                  class="select"
-                  style="width: 12em;"
-                  th:case="'Boolean'"
-                  th:field="*{__${unit.name}__}">
-                  <option value="">------------</option>
-                  <option
-                    value="true"
-                    th:text="#{|cms.${tag}.list.vo.${unit.name}.true|}">Yes</option>
-                  <option
-                    value="false"
-                    th:text="#{|cms.${tag}.list.vo.${unit.name}.false|}">No</option>
-                </select>
-                <input
-                  type="text"
-                  class="text"
-                  style="width: 12em;"
-                  th:case="*"
-                  th:field="*{__${unit.name}__}" />
-                <br th:if="${unitStat.size ne 3 and unitStat.count % 3 eq 0}" />
+                <div th:replace="widgets :: item(${tag}, ${unit.name})"></div>
               </th:block>
               <input
                 type="hidden"

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title th:text="#{|cms.${tag}.item.title|(${item.who})}">Page Title</title>
+<title th:text="#{|cms.${tag}.item.title|(${item.what})}">Page Title</title>
 <link
   href="../static/css/pmm.css"
   th:href="'/css/pmm.css'"
@@ -18,7 +18,7 @@
     <div
       id="banner"
       class="wrapper">
-      <h2 th:text="#{|cms.${tag}.item.banner|(${item.who})}">Banner Title</h2>
+      <h2 th:text="#{|cms.${tag}.item.banner|(${item.what})}">Banner Title</h2>
     </div>
     <div th:replace="widgets :: menubar(names=${names})">(Put menu bar here)</div>
     <div id="content">
@@ -40,15 +40,19 @@
           </div>
           <div
             class="right"
-            style="margin: 0 auto; max-width: 70%;">
-            <table
-              id="detailing"
-              th:object="${item}">
-              <tr th:each="unit: ${itemUnits}">
-                <th th:text="#{|cms.${tag}.list.vo.${unit.name}|}">Field Name</th>
-                <td th:text="*{__${unit.name}__}">Field Value</td>
-              </tr>
-            </table>
+            style="margin: 0 auto; min-width: 70%;">
+            <form action="#">
+              <table
+                id="detailing"
+                th:object="${item}">
+                <tr
+                  th:each="unit: ${itemUnits}"
+                  th:switch="${unit.type}">
+                  <th th:text="#{|cms.${tag}.list.vo.${unit.name}|}">Name</th>
+                  <td th:include="widgets :: item(${tag}, ${unit.name})"></td>
+                </tr>
+              </table>
+            </form>
             <div>
               <button class="button">Add</button>
               <button class="button">Edit</button>

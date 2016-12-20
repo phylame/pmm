@@ -14,7 +14,7 @@ public class AuthorVO extends Author {
      */
     private Integer books;
 
-    public String getWho() {
+    public String getWhat() {
         return getName();
     }
 }

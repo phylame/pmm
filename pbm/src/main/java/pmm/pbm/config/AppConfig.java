@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AppConfig {
+public class AppConfig{
     public static int shownPages;
 
     public static int defaultLimit;
@@ -18,4 +18,5 @@ public class AppConfig {
     private void setPageLimit(int limit) {
         defaultLimit = limit;
     }
+
 }

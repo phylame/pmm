@@ -4,8 +4,10 @@ import static org.springframework.util.StringUtils.capitalize;
 import static org.springframework.util.StringUtils.isEmpty;
 import static org.springframework.util.StringUtils.uncapitalize;
 
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.ServletRequest;
 
@@ -19,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-
 import lombok.SneakyThrows;
 import lombok.val;
 import pmm.pbm.data.base.entity.Endpoint;
@@ -29,8 +28,8 @@ import pmm.pbm.data.base.support.Entity;
 import pmm.pbm.data.base.support.Example;
 import pmm.pbm.service.rest.EndpointService;
 import pmm.pbm.service.support.CrudService;
-import pmm.pbm.util.Reflections;
 import pmm.pbm.web.controller.BaseController;
+import pw.phylame.ycl.util.Reflections;
 import pw.phylame.ycl.value.Pair;
 
 @RestController
@@ -45,21 +44,21 @@ public class CrudController extends BaseController {
     @RequestMapping(value = "/{endpoint}", method = RequestMethod.GET)
     public Object getEntities(@PathVariable("endpoint") String endpoint) {
         val service = getService(endpoint);
-        return Reflections.invokeMethod(service.service, "selectByExample", service.makeExample(), Example.class);
+        return Reflections.i(service.service, "selectByExample", service.makeExample(), Example.class);
     }
 
     @RequestMapping(value = "/{endpoint}", method = RequestMethod.POST)
     public Object createEntity(@PathVariable("endpoint") String endpoint, @RequestBody String json) {
         val service = getService(endpoint);
 
-        return Reflections.invokeMethod(service.service, "insert", getObjectParameter(service.entityClass, request),
+        return Reflections.i(service.service, "insert", getObjectParameter(service.entityClass, request),
                 Entity.class);
     }
 
     @RequestMapping(value = "/{endpoint}/{id}", method = RequestMethod.GET)
     public Object getEntity(@PathVariable("endpoint") String endpoint, @PathVariable("id") String id) {
         val service = getService(endpoint);
-        return Reflections.invokeMethod(service.service, "selectById", getValueParameter(service.idClass, id),
+        return Reflections.i(service.service, "selectById", getValueParameter(service.idClass, id),
                 Object.class);
     }
 
@@ -78,7 +77,7 @@ public class CrudController extends BaseController {
     @RequestMapping(value = "/{endpoint}/{id}", method = RequestMethod.DELETE)
     public Object deleteEntity(@PathVariable("endpoint") String endpoint, @PathVariable("id") String id) {
         val service = getService(endpoint);
-        return Reflections.invokeMethod(service.service, "deleteById", getValueParameter(service.idClass, id),
+        return Reflections.i(service.service, "deleteById", getValueParameter(service.idClass, id),
                 Object.class);
     }
 
@@ -93,7 +92,7 @@ public class CrudController extends BaseController {
         val object = type.newInstance();
         val binder = new ServletRequestDataBinder(object);
         binder.bind(request);
-        Reflections.invokeMethod(object, "setDeleted", false);
+        Reflections.i(object, "setDeleted", false);
         return object;
     }
 
@@ -139,7 +138,7 @@ public class CrudController extends BaseController {
 
         private boolean initialized = false;
 
-        private final Set<Pair<String, Class<?>>> properties = Sets.newLinkedHashSet();
+        private final Set<Pair<String, Class<?>>> properties = new LinkedHashSet<>();
 
         private final CrudService<? extends Entity, ? extends Example, ?> service;
 
@@ -173,22 +172,22 @@ public class CrudController extends BaseController {
         @SneakyThrows(Exception.class)
         private Example makeExample() {
             val example = exampleClass.newInstance();
-            val criteria = Reflections.invokeMethod(example, "createCriteria");
+            val criteria = Reflections.i(example, "createCriteria");
             for (val item : getPropertyNames()) {
                 val value = getValueParameter(item.getSecond(), request.getParameter(item.getFirst()));
                 if (value != null) {
                     if (CharSequence.class.isAssignableFrom(item.getSecond())) {
                         val str = value.toString();
                         if (!str.isEmpty()) {
-                            Reflections.invokeMethod(criteria, "and" + capitalize(item.getFirst()) + "Like",
+                            Reflections.i(criteria, "and" + capitalize(item.getFirst()) + "Like",
                                     '%' + str + '%');
                         }
                     } else {
-                        Reflections.invokeMethod(criteria, "and" + capitalize(item.getFirst()) + "EqualTo", value);
+                        Reflections.i(criteria, "and" + capitalize(item.getFirst()) + "EqualTo", value);
                     }
                 }
             }
-            Reflections.invokeMethod(criteria, "andDeletedEqualTo", false);
+            Reflections.i(criteria, "andDeletedEqualTo", false);
             String value = request.getParameter("offset");
             if (!isEmpty(value)) {
                 example.setOffset(Integer.parseInt(value));
@@ -214,7 +213,7 @@ public class CrudController extends BaseController {
 
     }
 
-    private final Map<String, ServiceDescriptor> services = Maps.newConcurrentMap();
+    private final Map<String, ServiceDescriptor> services = new ConcurrentHashMap<>();
 
     private ServiceDescriptor getService(String name) {
         ServiceDescriptor descriptor = services.get(name);

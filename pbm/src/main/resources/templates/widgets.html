@@ -18,22 +18,16 @@
     th:fragment="menubar(names)">
     <div class="wrapper">
       <ul class="menu inlist">
-        <li>
-          <a
+        <li><a
             href="index.html"
-            th:href="@{/cms/index.html}">Home</a>
-        </li>
-        <li th:each="name: ${names}">
-          <a
+            th:href="@{/cms/index.html}">Home</a></li>
+        <li th:each="name: ${names}"><a
             href="items.html"
             th:text="#{|cms.${name}.name|}"
-            th:href="@{|/cms/${name}.html|}">Items</a>
-        </li>
-        <li>
-          <a
+            th:href="@{|/cms/${name}.html|}">Items</a></li>
+        <li><a
             href="about.html"
-            th:href="@{/cms/about.html}">About</a>
-        </li>
+            th:href="@{/cms/about.html}">About</a></li>
       </ul>
     </div>
   </div>
@@ -58,5 +52,28 @@
       <div class="clear"></div>
     </div>
   </div>
+
+  <th:block th:fragment="item(tag, name)">
+    <select
+      class="select"
+      style="width: 12em;"
+      th:case="'Boolean'"
+      th:field="*{__${name}__}">
+      <option value="">-----------------</option>
+      <option
+        value="true"
+        th:text="#{|cms.${tag}.list.vo.${name}.true|}">Yes</option>
+      <option
+        value="false"
+        th:text="#{|cms.${tag}.list.vo.${name}.false|}">No</option>
+    </select>
+    <input
+      type="text"
+      class="text"
+      style="width: 12em;"
+      th:case="*"
+      th:field="*{__${name}__}" />
+  </th:block>
+
 </body>
 </html>

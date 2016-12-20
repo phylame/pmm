@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -22,8 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.google.common.collect.Maps;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -44,7 +43,7 @@ public class CMSService {
     @Autowired
     private WebApplicationContext context;
 
-    private final Map<String, ItemWorker> workers = Maps.newHashMap();
+    private final Map<String, ItemWorker> workers = new HashMap<>();
 
     @PreDestroy
     public void cleanup() {

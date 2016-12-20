@@ -14,7 +14,7 @@ public class TagVO extends Tag {
      */
     private Integer books;
 
-    public String getWho() {
+    public String getWhat() {
         return getName();
     }
 }

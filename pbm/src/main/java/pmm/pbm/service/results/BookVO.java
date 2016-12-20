@@ -25,7 +25,7 @@ public class BookVO implements Serializable {
 
     private List<Pair<Integer, String>> tags;
 
-    public String getWho() {
+    public String getWhat() {
         return title;
     }
 }
