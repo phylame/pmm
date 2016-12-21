@@ -14,7 +14,8 @@ import org.springframework.util.StringUtils;
 import lombok.val;
 
 @Intercepts({
-        @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
+        @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,
+                RowBounds.class, ResultHandler.class}),
         @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})
 })
 public class SQLPerformanceInterceptor extends MyBatisInterceptor {
@@ -38,9 +39,9 @@ public class SQLPerformanceInterceptor extends MyBatisInterceptor {
         long costing = System.currentTimeMillis() - begin;
 
         if (costing > warnTime) {
-            logger.error(String.format(
-                    "\nSQL Performance Warning: %dms\nID:  %s\nSQL: \nOptimize the SQL to keep costing < %dms\n--------------------------------------",
-                    costing, statementId, sql, warnTime));
+            logger.error(
+                    "\nSQL Performance Warning: {}ms\nID:  {}\nSQL: \nOptimize the SQL to keep costing < {}ms\n--------------------------------------",
+                    costing, statementId, sql, warnTime);
         }
         return result;
     }
@@ -52,7 +53,7 @@ public class SQLPerformanceInterceptor extends MyBatisInterceptor {
             try {
                 warnTime = Long.parseLong(value);
             } catch (NumberFormatException e) {
-                logger.error("invalid value for " + WARN_TIME_KEY);
+                logger.error("invalid value for {}", WARN_TIME_KEY);
             }
         }
     }
