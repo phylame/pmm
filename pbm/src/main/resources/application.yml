@@ -1,6 +1,18 @@
 server:
   port: 80
+  context-path: /pbm
+  display-name: PMM
+  session:
+    timeout: 1000000
 
+  tomcat:
+    uri-encoding: UTF-8
+
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types:
+      - text/html
 mybatis:
   config-location: classpath:mybatis-config.xml
   type-handlers-package: pmm.pbm.data.base.entity
@@ -8,9 +20,10 @@ mybatis:
 
 logging:
   level:
-    pmm.pbm: DEBUG
-    org.mybatis: DEBUG
-    org.apache.ibatis: DEBUG
+    pmm.pbm: debug
+    org.mybatis: debug
+    org.apache.ibatis: debug
+    org.springframework.web: debug
 
 pmm:
   paging:
@@ -24,7 +37,23 @@ schedule:
 spring:
   profiles:
     active: local
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
 
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+    multipart:
+      location: E:/tmp
+
+  mvc:
+    date-format: yy-M-d
 ---
 spring:
   profiles: local
@@ -32,26 +61,14 @@ spring:
     url: jdbc:mysql://localhost/pmm?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8
     username: pmm
     password: 123456
-    type: com.mchange.v2.c3p0.ComboPooledDataSource
 
   thymeleaf:
     cache: false
-
-  messages:
-    basename: i18n/messages
-
-  http:
-    encoding:
-      charset: UTF-8
-      force: true
-      enabled: true
 
   resources:
     chain:
       cache: false
 
-  mvc:
-    date-format: yy-M-d
 ---
 spring:
   profiles: test
@@ -59,22 +76,10 @@ spring:
     url: jdbc:mysql://192.168.1.100/test?useUnicode=true&amp;characterEncoding=UTF-8
     username: root
     password: tuozhen
-    type: com.mchange.v2.c3p0.ComboPooledDataSource
+
   thymeleaf:
     cache: false
-
-  messages:
-    basename: i18n/messages
-
-  http:
-    encoding:
-      charset: UTF-8
-      force: true
-      enabled: true
 
   resources:
     chain:
       cache: false
-
-  mvc:
-    date-format: yy-M-d

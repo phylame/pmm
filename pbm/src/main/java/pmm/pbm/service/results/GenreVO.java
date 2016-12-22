@@ -1,5 +1,7 @@
 package pmm.pbm.service.results;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import pmm.pbm.data.base.entity.Genre;
@@ -17,4 +19,6 @@ public class GenreVO extends Genre {
     public String getWhat() {
         return getName();
     }
+
+    private Date date=new Date();
 }

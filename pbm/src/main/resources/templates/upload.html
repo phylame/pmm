@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+  <form
+    th:action="@{/uploadx}"
+    enctype="multipart/form-data"
+    method="post">
+    <input
+      type="file"
+      name="file" />
+    <input
+      type="submit"
+      value="上传" />
+  </form>
+</body>
+</html>
