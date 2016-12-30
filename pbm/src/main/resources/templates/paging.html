@@ -11,6 +11,7 @@
         <span>| Size:</span>
         <select
           class="select"
+          title="Change page size"
           th:onchange="|location.href='@{${link}(offset=${page.offset}, limit=)}='+this.value;|">
           <option
             value="1"
@@ -27,18 +28,21 @@
           <li>
             <a
               href="#"
-              th:href="@{${link}(offset=1, limit=${page.limit})}">First</a>
+              title="Go to first page"
+              th:href="@{${link}(offset=1, limit=${page.limit})}">&lt;&lt;</a>
           </li>
           <li>
             <a
               href="#"
-              th:href="@{${link}(offset=${page.offset - 1}, limit=${page.limit})}">Previous</a>
+              title="Go to previous page"
+              th:href="@{${link}(offset=${page.offset - 1}, limit=${page.limit})}">&lt;</a>
           </li>
         </th:block>
         <li th:each="offset: ${page.offsets}">
           <a
             href="#"
             th:if="${offset ne page.offset}"
+            th:title="|Go to page ${offset}|"
             th:href="@{${link}(offset=${offset}, limit=${page.limit})}">[[${offset}]]</a>
           <span
             class="selected"
@@ -48,12 +52,14 @@
           <li>
             <a
               href="#"
-              th:href="@{${link}(offset=${page.offset + 1}, limit=${page.limit})}">Next</a>
+              title="Go to next page"
+              th:href="@{${link}(offset=${page.offset + 1}, limit=${page.limit})}">&gt;</a>
           </li>
           <li>
             <a
               href="#"
-              th:href="@{${link}(offset=${page.pages}, limit=${page.limit})}">Last</a>
+              title="Go to last page"
+              th:href="@{${link}(offset=${page.pages}, limit=${page.limit})}">&gt;&gt;</a>
           </li>
         </th:block>
       </ul>
