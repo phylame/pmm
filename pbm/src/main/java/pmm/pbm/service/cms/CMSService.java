@@ -31,7 +31,7 @@ import pmm.pbm.data.base.support.Paged;
 import pmm.pbm.util.WebUtils;
 import pmm.pbm.util.cms.HiddenField;
 import pmm.pbm.util.cms.QueryField;
-import pw.phylame.ycl.util.Function;
+import pw.phylame.ycl.function.Prediction;
 import pw.phylame.ycl.util.Reflections;
 import pw.phylame.ycl.util.StringUtils;
 import pw.phylame.ycl.value.Pair;
@@ -149,7 +149,7 @@ public class CMSService {
                     i -> !Modifier.isStatic(i.getModifiers()) && !i.isAnnotationPresent(HiddenField.class));
         }
 
-        private List<Unit> getUnits(Class<?> clazz, Function<Field, Boolean> prediction) {
+        private List<Unit> getUnits(Class<?> clazz, Prediction<Field> prediction) {
             return Reflections.getFields(clazz, prediction)
                     .stream()
                     .sorted(getFieldComparator(tag))
